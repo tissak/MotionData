@@ -31,6 +31,18 @@ module MotionData
       rd = NSRelationshipDescription.new
       inverseName = options.delete(:inverse)
 
+      raise Error.new("Cannot use :class and :destinationEntity at the same time for Model Definition") if options[:class].present? && options[:destinationEntity].present?
+
+      className = options.delete(:class)
+      if className.present?
+        clss = Kernel.const_get(className)
+        if clss.respond_to?(:entityDescription)
+          options[:destinationEntity] = clss.entityDescription
+        else
+          raise Error.new("Target model relationship class #{className} did not appear to be a MotionData Managed Object")
+        end
+      end
+
       options.each do |key, value|
         rd.send("#{key}=", value)
       end

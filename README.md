@@ -20,6 +20,16 @@ def applicationDocumentsDirectory
 end
 ```
 
+### Changes and saving
+
+The changes are acumulated and saved as per the core data way.
+
+To commit changes to the persistent store call:
+
+```ruby
+MotionData::Context.main.saveChanges
+```
+
 ### Schema
 
 The following models define a schema that is immediatly available during development:

@@ -31,10 +31,10 @@ module MotionData
       rd = NSRelationshipDescription.new
       inverseName = options.delete(:inverse)
 
-      raise Error.new("Cannot use :class and :destinationEntity at the same time for Model Definition") if options[:class].present? && options[:destinationEntity].present?
+      raise Error.new("Cannot use :class and :destinationEntity at the same time for Model Definition") if !options[:class].nil? && !options[:destinationEntity].nil?
 
       className = options.delete(:class)
-      if className.present?
+      if !className.nil?
         clss = Kernel.const_get(className)
         if clss.respond_to?(:entityDescription)
           options[:destinationEntity] = clss.entityDescription

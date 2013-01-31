@@ -5,6 +5,21 @@ also [ActiveRecord](http://api.rubyonrails.org/classes/ActiveRecord/Base.html).
 In addition, many of its Core Date related design principles are based on
 [MagicalRecord](https://github.com/magicalpanda/MagicalRecord).
 
+### Setup
+
+The app will need to target either an in-memory or sqlite db store. This can be seen in the example app's app_delegate.rb
+
+```ruby
+def setupCoreDataStack
+  storePath = File.join(applicationDocumentsDirectory, 'Recipes.sqlite')
+  MotionData.setupCoreDataStackWithSQLiteStore(storePath)
+end
+
+def applicationDocumentsDirectory
+  NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, true).last
+end
+```
+
 ### Schema
 
 The following models define a schema that is immediatly available during development:
@@ -50,7 +65,6 @@ end
 As you can see it has a version, this is the app’s release version. These dumps
 would be created on each new release of the app and would then allow for easy
 migrations with code that can be found in @mdiep’s [CoreDataInCode][1] example.
-
 
 ### Dynamic scopes
 

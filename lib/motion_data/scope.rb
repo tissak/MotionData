@@ -248,6 +248,10 @@ module MotionData
 
   class Scope
     class Model < Scope
+      def count
+        self.to_a.size
+      end
+
       def set
         @sortDescriptors.empty? ? NSSet.setWithArray(array) : NSOrderedSet.orderedSetWithArray(array)
       end

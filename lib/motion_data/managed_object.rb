@@ -38,6 +38,10 @@ module MotionData
         entity
       end
 
+      def count
+        self.all.count
+      end
+
       def inherited(klass)
         MotionData::Schema.current.registerEntity(klass.entityDescription)
       end
@@ -125,6 +129,11 @@ module MotionData
       def scopeByName(name)
         scopes[name.to_sym]
       end
+    end
+
+    # Shorthand for deleting an object. Assumes the main context unless specified
+    def delete(context = MotionData::Context.main)
+      context.deleteObject(self)
     end
 
     # Called from method that's dynamically added from

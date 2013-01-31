@@ -42,6 +42,10 @@ module MotionData
         self.all.count
       end
 
+      def first
+        self.all.first
+      end
+
       def inherited(klass)
         MotionData::Schema.current.registerEntity(klass.entityDescription)
       end

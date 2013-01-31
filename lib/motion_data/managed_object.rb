@@ -160,9 +160,9 @@ module MotionData
       end
     end
 
-    def inspect
-      description
-    end
+    #def inspect
+    #  #description
+    #end
   end
 
 end

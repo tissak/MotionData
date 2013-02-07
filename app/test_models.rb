@@ -5,7 +5,7 @@ class Article < MotionData::ManagedObject
 end
 
 class Author
-  hasMany :articles, :destinationEntity => Article.entityDescription, :inverse => :author
+  hasMany :articles, :class => "Article", :inverse => :author
 
   property :name, String, :required => true
   property :fee, Float

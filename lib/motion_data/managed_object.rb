@@ -137,7 +137,9 @@ module MotionData
 
     # Shorthand for deleting an object. Assumes the main context unless specified
     def delete(context = MotionData::Context.main)
+      willDelete
       context.deleteObject(self)
+      wasDeleted
     end
 
     # Called from method that's dynamically added from
@@ -176,6 +178,11 @@ module MotionData
     #def inspect
     #  #description
     #end
+
+    # Callbacks that can be overridden
+    def willDelete; end
+    def wasDeleted; end
+
   end
 
 end
